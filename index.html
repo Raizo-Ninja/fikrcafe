@@ -74,8 +74,8 @@ html:not([lang="en"]) .label{font-family:var(--body);font-size:14px;letter-spaci
 .hero .bg video.on{opacity:1}
 .hero .bg::after{content:"";position:absolute;inset:0;background:
   linear-gradient(180deg,rgba(17,6,16,.55) 0%,rgba(17,6,16,.12) 30%,rgba(17,6,16,.12) 55%,rgba(17,6,16,.78) 85%,var(--night) 100%)}
-.hero .wrap{position:absolute;inset-inline:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:18px;padding-block:0 clamp(40px,6vw,72px)}
-.hero .anchor{position:absolute;left:0;top:0;transform:translate(-50%,-100%);will-change:left,top,width}
+.hero .wrap{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding-block:90px clamp(40px,6vw,72px)}
+.hero .anchor{position:relative;width:clamp(72px,7vw,96px);margin-inline:auto;margin-bottom:4px}
 .logo3d{position:relative;width:100%;aspect-ratio:520/714}
 .names{font-family:var(--latin);font-weight:300;font-stretch:125%;letter-spacing:.5em;font-size:clamp(11px,1.1vw,13px);color:var(--text);opacity:.75;display:flex;gap:16px;align-items:center;direction:ltr}
 .names .ar{font-family:var(--ar);letter-spacing:0;font-size:17px}
@@ -93,8 +93,8 @@ html[lang="en"] .btn{font-family:var(--latin);font-weight:400;font-stretch:115%;
   .hero{height:auto;min-height:0}
   .hero .bg img{object-position:53% 50%}
   .hero .bg::after{background:linear-gradient(180deg,rgba(17,6,16,.6),rgba(17,6,16,.35) 40%,rgba(17,6,16,.85) 80%,var(--night))}
-  .hero .wrap{position:relative;padding-block:120px 56px;gap:16px}
-  .hero .anchor{position:relative;transform:none;left:auto!important;top:auto!important;width:110px!important;margin-inline:auto;margin-bottom:6px}
+  .hero .wrap{position:relative;padding-block:110px 56px;gap:14px}
+  .hero .anchor{width:84px}
   .hero .bg img{object-position:56% 50%}
 }
 @keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
@@ -324,7 +324,10 @@ footer .word{color:var(--muted)}
 <main>
   <section class="hero">
     <div class="bg"><img id="heroimg" src="assets/hero.webp" alt="" width="1537" height="1023"><video id="herovid" autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.webp"><source src="assets/hero.webm" type="video/webm"><source src="assets/hero.mp4" type="video/mp4"></video></div>
-    <div class="anchor" id="anchor"><div class="logo3d" role="img" aria-label="Fikr Cafe">
+    
+    <div class="wrap">
+      
+      <div class="anchor" id="anchor"><div class="logo3d" role="img" aria-label="Fikr Cafe">
         <span class="glow"></span>
         <div class="stack">
           <img class="p" src="assets/logo-en-purple.png" alt="">
@@ -332,8 +335,6 @@ footer .word{color:var(--muted)}
           <img class="y" src="assets/logo-en-yellow.png" alt="">
         </div>
       </div></div>
-    <div class="wrap">
-      
       <div class="names"><span>FIKR</span><i></i><span class="ar">فكر</span><i></i><span>ERBIL</span></div>
       <h1 data-h="hero">بيتٌ <span>لأفكارك</span></h1>
       <div class="actions">
@@ -671,14 +672,6 @@ footer .word{color:var(--muted)}
   });
 })();
 
-(function(){var img=document.getElementById("heroimg"),an=document.getElementById("anchor"),hero=document.querySelector(".hero");if(!img||!an)return;
-var IW=1537,IH=1023,PX=.562,PY=.445,PW=.10;
-var wrap=hero.querySelector(".wrap"),names=wrap.querySelector(".names");
-function place(){var m=window.matchMedia("(max-width:760px)").matches;if(m){if(an.parentNode!==wrap)wrap.insertBefore(an,names);an.style.left="";an.style.top="";an.style.width="";return}else if(an.parentNode===wrap){hero.insertBefore(an,wrap)}
-var W=hero.clientWidth,H=hero.clientHeight,sc=Math.max(W/IW,H/IH),rw=IW*sc,rh=IH*sc;
-var ox=(W-rw)*.53,oy=(H-rh)*.45;
-an.style.left=(ox+rw*PX)+"px";an.style.top=(oy+rh*PY)+"px";an.style.width=(rw*PW)+"px";}
-place();window.addEventListener("resize",place);})();
 
 (function(){var cs=document.getElementById("cs");if(!cs)return;var num=cs.querySelector(".num"),wa=cs.querySelector(".wa"),ph=cs.querySelector(".ph"),cp=cs.querySelector(".cp"),cur="";
 function t(k){var l=document.documentElement.lang,d={ar:{cs_copied:"تم النسخ",cs_copyb:"انسخ إلى الحافظة"},ckb:{cs_copied:"کۆپی کرا",cs_copyb:"کۆپی بکە"},en:{cs_copied:"Copied",cs_copyb:"Copy to clipboard"}};return (d[l]||d.ar)[k]}
