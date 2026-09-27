@@ -1,0 +1,692 @@
+<title>Fikr Cafe</title>
+<meta name="description" content="Fikr Cafe, Erbil: coffee and quiet thought.">
+<link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,200..600&family=Noto+Sans+Arabic:wght@300;400&display=swap">
+<style>
+@font-face{font-family:"Omnes Arabic";src:url("assets/omnes-arabic.woff2") format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:"Helvetica Now Display";src:url("assets/helvetica-now-black.woff2") format("woff2");font-weight:900;font-display:swap}
+@font-face{font-family:"Rabar";src:url("assets/rabar.woff2") format("woff2");font-weight:400 800;font-display:swap}
+
+:root{
+  color-scheme:dark;
+  --night:#110610;
+  --deep:#1E0918;
+  --plum:#4B0077;
+  --gold:#FFC857;
+  --sun:#FFD23F;
+  --text:#EFE8F4;
+  --muted:#B3A2AE;
+  --hair:rgba(255,200,87,.28);
+  --hair-soft:rgba(239,232,244,.10);
+  --latin:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --latin-head:"Helvetica Now Display","Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --ar:"Omnes Arabic","Noto Sans Arabic",Tahoma,sans-serif;
+  --ku-head:"Rabar","Noto Sans Arabic",Tahoma,sans-serif;
+  --ku-body:"Rabar","Noto Sans Arabic",Tahoma,sans-serif;
+  --body:var(--ar);
+  --head:var(--ar);
+  --gutter:clamp(20px,5vw,56px);
+}
+html[lang="en"]{--body:var(--latin);--head:var(--latin-head)}
+html[lang="ckb"]{--body:var(--ku-body);--head:var(--ku-head)}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--night);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.8;-webkit-font-smoothing:antialiased}
+html[lang="en"] body{font-weight:300;line-height:1.7}
+html[lang="ckb"] body{line-height:1.9;font-size:16px}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+p,h1,h2,h3{margin:0}
+h1,h2,h3{font-family:var(--head);font-weight:400;text-wrap:balance}
+html[lang="en"] h1,html[lang="en"] h2{font-weight:900;font-stretch:100%;letter-spacing:-.01em;text-transform:uppercase;line-height:1.02}
+html[lang="ckb"] h1,html[lang="ckb"] h2{font-weight:700}
+.wrap{max-width:1120px;margin-inline:auto;padding-inline:var(--gutter)}
+.label{font-family:var(--latin);font-size:11px;font-weight:500;font-stretch:120%;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+html:not([lang="en"]) .label{font-family:var(--body);font-size:14px;letter-spacing:.04em;text-transform:none}
+.rule{width:56px;height:1px;background:var(--gold);opacity:.7;border:0;margin:0}
+:focus-visible{outline:1px solid var(--gold);outline-offset:6px}
+
+/* top bar */
+.top{position:absolute;inset-inline:0;top:env(safe-area-inset-top,0px);z-index:5}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;min-height:84px}
+.word{font-family:var(--latin);font-weight:400;font-stretch:125%;letter-spacing:.42em;font-size:12px;color:var(--text)}
+.lang{display:flex;gap:4px}
+.lang button{all:unset;cursor:pointer;padding:6px 10px;font-size:13px;color:var(--muted);border-bottom:1px solid transparent;transition:color .2s}
+.lang button[data-l="en"]{font-family:var(--latin);letter-spacing:.2em}
+.lang button[data-l="ar"]{font-family:var(--ar)}
+.lang button[data-l="ckb"]{font-family:var(--ku-head)}
+.lang button:hover{color:var(--text)}
+.lang button[aria-pressed="true"]{color:var(--gold);border-bottom-color:var(--gold)}
+.lang button:focus-visible{outline:1px solid var(--gold)}
+
+/* hero */
+.hero{position:relative;text-align:center;overflow:hidden;background:var(--night);isolation:isolate;min-height:600px;height:min(100svh,calc(100vw*.72))}
+.hero .bg{position:absolute;inset:0;z-index:-1}
+.hero .bg img{width:100%;height:100%;object-fit:cover;object-position:53% 45%;animation:zoom 14s ease-out both}
+.hero .bg::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(17,6,16,.55) 0%,rgba(17,6,16,.12) 30%,rgba(17,6,16,.12) 55%,rgba(17,6,16,.78) 85%,var(--night) 100%)}
+.hero .wrap{position:absolute;inset-inline:0;bottom:0;display:flex;flex-direction:column;align-items:center;gap:18px;padding-block:0 clamp(40px,6vw,72px)}
+.hero .anchor{position:absolute;left:0;top:0;transform:translate(-50%,-100%);will-change:left,top,width}
+.logo3d{position:relative;width:100%;aspect-ratio:520/714}
+.names{font-family:var(--latin);font-weight:300;font-stretch:125%;letter-spacing:.5em;font-size:clamp(11px,1.1vw,13px);color:var(--text);opacity:.75;display:flex;gap:16px;align-items:center;direction:ltr}
+.names .ar{font-family:var(--ar);letter-spacing:0;font-size:17px}
+.names i{width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block}
+.hero h1{font-size:clamp(34px,5vw,64px);line-height:1.15;color:var(--text);max-width:12em;text-shadow:0 2px 30px rgba(0,0,0,.55)}
+html[lang="en"] .hero h1{line-height:.98;font-weight:900;font-size:clamp(34px,4.8vw,60px)}
+.hero h1 span{color:var(--gold)}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:6px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 30px;font-size:14px;border:1px solid rgba(255,200,87,.5);color:var(--text);background:rgba(17,6,16,.25);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .25s,background .25s,color .25s}
+html[lang="en"] .btn{font-family:var(--latin);font-weight:400;font-stretch:115%;letter-spacing:.22em;text-transform:uppercase;font-size:12px}
+.btn:hover{border-color:var(--gold);color:var(--gold)}
+.btn.solid{background:var(--gold);border-color:var(--gold);color:var(--night)}
+.btn.solid:hover{background:transparent;color:var(--gold)}
+@media (max-width:760px){
+  .hero{height:auto;min-height:0}
+  .hero .bg img{object-position:53% 50%}
+  .hero .bg::after{background:linear-gradient(180deg,rgba(17,6,16,.6),rgba(17,6,16,.35) 40%,rgba(17,6,16,.85) 80%,var(--night))}
+  .hero .wrap{position:relative;padding-block:120px 56px;gap:16px}
+  .hero .anchor{position:relative;transform:none;left:auto!important;top:auto!important;width:110px!important;margin-inline:auto;margin-bottom:6px}
+  .hero .bg img{object-position:56% 50%}
+}
+@keyframes zoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+@keyframes rise{from{opacity:.001;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.mark,.hero .bg img{animation:none}html{scroll-behavior:auto}}
+
+/* mission */
+.mission{border-top:1px solid var(--hair-soft);background:var(--deep)}
+.mission .wrap{padding-block:clamp(88px,11vw,140px);display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center}
+.mission p{font-family:var(--head);font-size:clamp(24px,3vw,38px);line-height:1.6;max-width:22em}
+html[lang="en"] .mission p{font-weight:900;line-height:1.15;font-family:var(--latin-head);text-transform:uppercase;font-size:clamp(22px,2.6vw,32px)}
+html[lang="ckb"] .mission p{font-weight:700;line-height:1.7}
+
+/* pillars */
+.pillars .wrap{display:grid;grid-template-columns:repeat(3,1fr);padding-block:clamp(72px,9vw,120px)}
+.pillar{padding-inline:clamp(20px,3vw,44px);display:flex;flex-direction:column;gap:14px}
+.pillar + .pillar{border-inline-start:1px solid var(--hair)}
+.pillar .pi{width:56px;height:56px;border-radius:16px;box-shadow:0 10px 24px rgba(0,0,0,.45),0 0 0 1px rgba(255,200,87,.25);margin-bottom:6px;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+.pillar:hover .pi{transform:translateY(-4px) rotate(-3deg)}
+.pillar h3{font-size:clamp(22px,2.2vw,28px);color:var(--gold)}
+html[lang="en"] .pillar h3{font-family:var(--latin-head);font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:18px}
+html[lang="ckb"] .pillar h3{font-weight:700}
+.pillar p{color:var(--muted);font-size:16px;max-width:22em}
+@media (max-width:760px){
+  .pillars .wrap{grid-template-columns:1fr;gap:0}
+  .pillar{padding-inline:0;padding-block:26px}
+  .pillar + .pillar{border-inline-start:0;border-top:1px solid var(--hair)}
+}
+
+/* gallery */
+.gallery .wrap{padding-block:clamp(40px,5vw,64px) clamp(80px,10vw,130px)}
+.gallery .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.gallery h2{font-size:clamp(30px,4vw,52px);margin-top:14px}
+html[lang="en"] .gallery h2{font-weight:900}
+.gallery .head p{color:var(--muted);max-width:22em}
+.shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shots figure{margin:0;position:relative;overflow:hidden;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.4);cursor:zoom-in}
+.shots figure:hover img{transform:scale(1.08)}
+.shots figure.wide{grid-column:span 2}
+.shots img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.shots figure.wide img{aspect-ratio:8/3}
+.shots figure:hover img{transform:scale(1.035)}
+.shots figcaption{position:absolute;inset-inline-start:16px;bottom:14px;display:flex;gap:10px;align-items:center;color:var(--text);font-size:13px;background:rgba(17,6,16,.55);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
+.shots figcaption::before{content:"";width:14px;height:1px;background:var(--gold)}
+@media (max-width:760px){
+  .shots{grid-template-columns:1fr 1fr}
+  .shots figure.wide{grid-column:span 2}
+  .shots figure.wide img{aspect-ratio:16/9}
+}
+
+/* film strip */
+.strip{overflow:hidden;direction:ltr;padding-block:clamp(24px,4vw,56px) clamp(72px,9vw,120px);display:grid;gap:18px;margin-inline:calc(-1*var(--gutter));padding-inline:var(--gutter);-webkit-mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(to right,transparent,#000 5%,#000 95%,transparent)}
+.strip .row{display:flex;gap:18px;width:max-content;animation:marquee var(--sp,70s) linear infinite;will-change:transform}
+.strip .row.rev{animation-direction:reverse}
+.strip:hover .row{animation-play-state:paused}
+.strip .row > .ph{all:unset;cursor:zoom-in;flex:0 0 clamp(170px,19vw,240px);aspect-ratio:2/3;border-radius:16px;overflow:hidden;box-shadow:0 16px 36px rgba(0,0,0,.45);position:relative;isolation:isolate}
+.strip .row > .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(17,6,16,.45));opacity:.6;transition:opacity .4s}
+.strip .row > .ph:hover::after{opacity:0}
+.strip img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.strip .row > .ph:hover img{transform:scale(1.14)}
+.strip .row > .ph:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.strip .row > .ph img{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+@media (prefers-reduced-motion:reduce){.strip .row{animation:none}.strip{overflow-x:auto}}
+
+/* reveal on scroll */
+.rv{animation:riseIn 1s cubic-bezier(.2,.7,.2,1) both;animation-delay:var(--d,0s)}
+@keyframes riseIn{from{opacity:.001;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}}
+
+/* lightbox */
+#lb{position:fixed;inset:0;z-index:200;background:rgba(10,3,12,.94);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility .35s;touch-action:none}
+#lb.open{opacity:1;visibility:visible}
+#lb img{max-width:min(96vw,1400px);max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);object-fit:contain;border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6);transform:scale(.94);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+#lb.open img{transform:none}
+#lb button{all:unset;cursor:pointer;position:absolute;color:var(--text);width:48px;height:48px;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.08);transition:background .2s}
+#lb button:hover{background:rgba(255,200,87,.25)}
+#lb .x{top:calc(14px + env(safe-area-inset-top,0px));right:14px}
+#lb .n{right:14px;top:50%;transform:translateY(-50%)}#lb .p{left:14px;top:50%;transform:translateY(-50%)}
+#lb svg{width:22px;height:22px}
+#lb .c{position:absolute;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);font-family:var(--latin);font-size:12px;letter-spacing:.3em;color:var(--muted)}
+@media (max-width:600px){#lb .n,#lb .p{display:none}}
+/* menu */
+.menu{background:var(--deep);border-block:1px solid var(--hair-soft)}
+.menu{position:relative;overflow:hidden;isolation:isolate}
+.menu .img{position:absolute;inset-block:0;inset-inline-end:0;width:48%;z-index:-1}
+.menu .img img{width:100%;height:100%;object-fit:cover}
+.menu .img::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,transparent 30%,var(--deep) 100%)}
+html[dir="rtl"] .menu .img::after{background:linear-gradient(to right,transparent 30%,var(--deep) 100%)}
+.menu .wrap{display:flex;flex-direction:column;align-items:flex-start;gap:28px;padding-block:clamp(80px,10vw,130px)}
+.menu .wrap > div{max-width:28em}
+@media (max-width:760px){.menu .img{position:relative;width:100%;height:260px}.menu .img::after{background:linear-gradient(to bottom,transparent 40%,var(--deep) 100%)!important}.menu .wrap{padding-block:24px 72px}}
+.menu h2{font-size:clamp(30px,3.8vw,48px);margin-top:14px}
+.menu p{color:var(--muted);margin-top:8px}
+
+/* visit */
+.visit .wrap{padding-block:clamp(80px,10vw,130px);display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(32px,6vw,96px);align-items:start}
+.visit h2{font-size:clamp(40px,6vw,76px);line-height:1.1;margin-top:14px}
+html[lang="en"] .visit h2{font-weight:900}
+.list{border-top:1px solid var(--hair)}
+.row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;padding-block:22px;border-bottom:1px solid var(--hair);transition:padding .25s,color .25s}
+.row:hover{color:var(--gold);padding-inline-start:10px}
+.row small{display:block;color:var(--muted);font-family:var(--latin);font-size:13px;letter-spacing:.06em;direction:ltr;unicode-bidi:plaintext;text-align:start}
+.row svg{width:18px;height:18px;color:var(--gold)}
+html[dir="rtl"] .row svg{transform:scaleX(-1)}
+@media (max-width:760px){.visit .wrap{grid-template-columns:1fr}}
+
+/* loader: coffee fill */
+#loader{position:fixed;inset:0;z-index:100;background:var(--night);display:grid;place-items:center;transition:opacity .7s ease,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+#loader .cup{position:relative;width:clamp(120px,16vw,170px);aspect-ratio:520/714}
+#loader .ghost{position:absolute;inset:0;width:100%;height:100%;opacity:.14}
+#loader .liquid{position:absolute;inset:0;-webkit-mask:url("assets/logo-en-white.png") center/contain no-repeat;mask:url("assets/logo-en-white.png") center/contain no-repeat}
+#loader .fill{position:absolute;left:0;right:0;bottom:0;height:0;background:var(--sun);animation:pour 2.3s cubic-bezier(.4,.1,.3,1) .25s forwards}
+#loader .fill::before{content:"";position:absolute;left:0;top:-15px;width:200%;height:16px;background:url("data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 20%22><path fill=%22%23FFD23F%22 d=%22M0 12 Q15 2 30 12 T60 12 T90 12 T120 12 V20 H0 Z%22/></svg>") repeat-x;background-size:50% 100%;animation:wave 1.1s linear infinite}
+#loader .fill::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 30%,rgba(120,60,0,.18))}
+#loader .steam{position:absolute;left:50%;top:-18%;width:2px;height:18%;background:linear-gradient(to top,rgba(255,200,87,.4),transparent);filter:blur(2px);opacity:0;animation:steam 1.6s ease-out 2.2s infinite}
+#loader .steam:nth-child(2){left:42%;animation-delay:2.6s}#loader .steam:nth-child(3){left:58%;animation-delay:3s}
+#loader p{position:absolute;bottom:-46px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--latin);font-size:11px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase}
+@keyframes pour{to{height:100%}}
+@keyframes wave{to{background-position-x:-50%}}
+@keyframes steam{0%{opacity:0;transform:translateY(0) scaleX(1)}30%{opacity:1}100%{opacity:0;transform:translateY(-26px) scaleX(2.4)}}
+@media (prefers-reduced-motion:reduce){#loader{display:none}}
+
+/* animated logo: colour cycle + pulse */
+.logo3d{position:relative;width:clamp(120px,14vw,160px);aspect-ratio:520/714}
+.logo3d .stack{position:absolute;inset:0;animation:beat 4.8s ease-in-out infinite}
+.logo3d img{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));animation:cycle 7.2s ease-in-out infinite}
+.logo3d .y{animation-delay:0s}
+.logo3d .w{animation-delay:-4.8s}
+.logo3d .p{animation-delay:-2.4s;filter:drop-shadow(0 0 22px rgba(255,200,87,.55))}
+.logo3d .glow{position:absolute;inset:-45%;background:radial-gradient(closest-side,rgba(255,200,87,.28),transparent 70%);animation:glowBeat 4.8s ease-in-out infinite,glowHue 7.2s ease-in-out infinite;pointer-events:none;filter:blur(6px)}
+@keyframes cycle{0%,27%{opacity:1}36%,91%{opacity:0}100%{opacity:1}}
+@keyframes beat{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.03) translateY(-4px)}}
+@keyframes glowBeat{0%,100%{opacity:.35;transform:scale(.9)}18%{opacity:1;transform:scale(1.08)}}
+@keyframes glowHue{0%,27%{background:radial-gradient(closest-side,rgba(255,200,87,.35),transparent 70%)}36%,60%{background:radial-gradient(closest-side,rgba(255,255,255,.28),transparent 70%)}69%,91%{background:radial-gradient(closest-side,rgba(160,80,230,.45),transparent 70%)}100%{background:radial-gradient(closest-side,rgba(255,200,87,.35),transparent 70%)}}
+
+/* menu highlights */
+.dishes{overflow:hidden}
+.dishes .wrap{padding-block:clamp(56px,7vw,96px) clamp(24px,4vw,48px)}
+.dishes .head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px}
+.dishes h2{font-size:clamp(30px,4vw,52px);margin-top:14px}
+html[lang="en"] .dishes h2{font-weight:900}
+.dishes .head p{color:var(--muted);max-width:22em}
+.rail-wrap{overflow:hidden;margin-inline:calc(-1*var(--gutter));padding-block:6px 28px;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
+.rail{display:flex;gap:18px;width:max-content;padding-inline-start:var(--gutter);animation:marquee var(--speed,60s) linear infinite;will-change:transform}
+html[dir="rtl"] .rail{animation-name:marqueeRtl}
+.rail-wrap:hover .rail{animation-play-state:paused}
+.rail > *{flex:0 0 clamp(220px,24vw,300px)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes marqueeRtl{from{transform:translateX(0)}to{transform:translateX(50%)}}
+@media (prefers-reduced-motion:reduce){.rail{animation:none}.rail-wrap{overflow-x:auto}}
+.dish{scroll-snap-align:start;display:flex;flex-direction:column;gap:14px;text-decoration:none;padding-inline:2px}
+.dish .pic{aspect-ratio:1;overflow:hidden;border-radius:22px;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,200,87,.18);transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.dish .pic::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 40%,rgba(17,6,16,.35));pointer-events:none}
+.dish:hover .pic{transform:translateY(-6px);box-shadow:0 28px 50px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,200,87,.5)}
+.dish img{width:100%;height:100%;object-fit:cover;border-radius:inherit;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.dish:hover img{transform:scale(1.05)}
+.dish .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.dish strong{font-weight:400;font-size:16px;color:var(--text)}
+html[lang="en"] .dish strong{font-weight:300}
+.dish em{font-style:normal;font-family:var(--latin);font-size:13px;letter-spacing:.06em;color:var(--gold);white-space:nowrap;direction:ltr;font-variant-numeric:tabular-nums}
+.dish small{color:var(--muted);font-size:13px}
+.rail-nav{display:none}
+.rail-nav button{all:unset;cursor:pointer;width:42px;height:42px;border:1px solid var(--hair);display:grid;place-items:center;color:var(--gold);transition:background .2s}
+.rail-nav button:hover{background:rgba(255,200,87,.12)}
+.rail-nav svg{width:16px;height:16px}
+html[dir="rtl"] .rail-nav svg{transform:scaleX(-1)}
+@media (pointer:coarse){.rail-nav{display:none}}
+
+/* hero contact */
+.contact{display:flex;align-items:center;gap:16px;margin-top:18px;font-family:var(--latin);font-weight:300;font-size:13px;letter-spacing:.14em;color:var(--muted);direction:ltr;font-variant-numeric:tabular-nums}
+.contact .tel{all:unset;cursor:pointer;color:var(--muted);transition:color .2s;font:inherit;letter-spacing:inherit}
+.contact .tel:hover{color:var(--gold)}
+.contact .tel:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+/* call sheet */
+#cs{position:fixed;inset:0;z-index:150;background:rgba(10,3,12,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:flex-end;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+#cs.open{opacity:1;visibility:visible}
+#cs .card{width:min(100%,440px);background:var(--deep);border:1px solid var(--hair);border-bottom:0;border-radius:22px 22px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px));transform:translateY(24px);transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+#cs.open .card{transform:none}
+@media (min-width:600px){#cs{align-items:center}#cs .card{border-radius:22px;border-bottom:1px solid var(--hair)}}
+#cs .num{font-family:var(--latin);font-size:22px;letter-spacing:.08em;color:var(--text);text-align:center;direction:ltr;font-variant-numeric:tabular-nums;margin-bottom:18px}
+#cs button.opt{all:unset;box-sizing:border-box;width:100%;cursor:pointer;font:inherit;display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;padding:14px 12px;border:1px solid var(--hair-soft);border-radius:14px;color:var(--text);margin-top:10px}
+#cs .opt{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;padding:14px 12px;border:1px solid var(--hair-soft);border-radius:14px;color:var(--text);text-decoration:none;transition:border-color .2s,background .2s}
+#cs .opt + .opt{margin-top:10px}
+#cs .opt:hover{border-color:var(--gold);background:rgba(255,200,87,.06)}
+#cs .opt .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center}
+#cs .opt.wa .ic{background:#25D366;color:#fff}
+#cs .opt.ph .ic{background:var(--gold);color:var(--night)}
+#cs .opt.cp .ic{background:rgba(255,255,255,.08);color:var(--text)}
+#cs .opt svg{width:22px;height:22px}
+#cs .opt strong{display:block;font-weight:500;font-size:16px}
+#cs .opt small{display:block;color:var(--muted);font-size:13px}
+#cs .opt .go{width:18px;height:18px;color:var(--muted)}
+html[dir="rtl"] #cs .opt .go{transform:scaleX(-1)}
+#cs .close{all:unset;cursor:pointer;display:block;width:100%;text-align:center;margin-top:14px;padding:10px;color:var(--muted);font-size:14px}
+#cs .close:hover{color:var(--gold)}
+.contact i{width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block;opacity:.8}
+@media (max-width:400px){.contact{flex-direction:column;gap:6px}.contact i{display:none}}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:32px;border-top:1px solid var(--hair-soft);color:var(--muted);font-size:13px}
+footer img{height:30px;width:auto;opacity:.85}
+footer .word{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<div id="loader" aria-hidden="true">
+  <div class="cup">
+    <span class="steam"></span><span class="steam"></span><span class="steam"></span>
+    <img class="ghost" src="assets/logo-en-white.png" alt="">
+    <div class="liquid"><div class="fill"></div></div>
+    <p>Brewing</p>
+  </div>
+</div>
+<script>(function(){var l=document.getElementById("loader");if(!l)return;function done(){if(!l.classList.contains("done")){l.classList.add("done");setTimeout(function(){if(l.parentNode)l.parentNode.removeChild(l)},900)}}setTimeout(done,3000);window.addEventListener("load",function(){setTimeout(done,3000)});})();</script>
+<header class="top">
+  <div class="wrap">
+    <span class="word">FIKR CAFE</span>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-l="ar" aria-pressed="true">عربي</button>
+      <button type="button" data-l="ckb" aria-pressed="false">کوردی</button>
+      <button type="button" data-l="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="bg"><img id="heroimg" src="assets/hero.webp" alt="" width="1537" height="1023"></div>
+    <div class="anchor" id="anchor"><div class="logo3d" role="img" aria-label="Fikr Cafe">
+        <span class="glow"></span>
+        <div class="stack">
+          <img class="p" src="assets/logo-en-purple.png" alt="">
+          <img class="w" src="assets/logo-en-white.png" alt="">
+          <img class="y" src="assets/logo-en-yellow.png" alt="">
+        </div>
+      </div></div>
+    <div class="wrap">
+      
+      <div class="names"><span>FIKR</span><i></i><span class="ar">فكر</span><i></i><span>ERBIL</span></div>
+      <h1 data-h="hero">بيتٌ <span>لأفكارك</span></h1>
+      <div class="actions">
+        <a class="btn solid" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener" data-t="b_menu">المنيو</a>
+        <a class="btn" href="https://www.google.com/maps/place/Fikr+Cafe/data=!4m2!3m1!1s0x0:0x516d12f6e4f9b03c" target="_blank" rel="noopener" data-t="b_map">الموقع</a>
+      </div>
+      <div class="contact"><button type="button" class="tel" data-num="9647500689090">0750 068 9090</button><i></i><button type="button" class="tel" data-num="9647789949090">0778 994 9090</button></div>
+    </div>
+  </section>
+
+  <section class="dishes" id="dishes">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="label" data-t="l_dishes">من المنيو</span><h2 data-t="dishes_t">أطباق ومشروبات مختارة</h2></div>
+        <div class="rail-nav"><button type="button" data-dir="-1" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" data-dir="1" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button></div>
+      </div>
+      <div class="rail-wrap"><div class="rail" id="rail">
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/matcha.webp" alt="Rose Pistachio Matcha" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_matcha">ماتشا الورد والفستق</strong><em>9,000 IQD</em></span>
+          <small data-t="c_matcha">ماتشا</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/saffron-latte.webp" alt="Saffron Cloud Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_saffron_latte">سفرون كلاود لاتيه</strong><em>8,500 IQD</em></span>
+          <small data-t="c_saffron_latte">مشروبات ساخنة</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/date-latte.webp" alt="Date Caramel Iced Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_date_latte">آيس لاتيه بالتمر والكراميل</strong><em>7,500 IQD</em></span>
+          <small data-t="c_date_latte">آيس كوفي</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/berry-tonic.webp" alt="Berry Tonic Espresso" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_berry_tonic">بيري تونيك إسبريسو</strong><em>8,000 IQD</em></span>
+          <small data-t="c_berry_tonic">آيس كوفي</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/roast-beef-salad.webp" alt="Roast Beef Salad" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_roast_beef_salad">سلطة روست بيف</strong><em>10,500 IQD</em></span>
+          <small data-t="c_roast_beef_salad">سلطات</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/pistachio-cake.webp" alt="Pistachio Dream Slice" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_pistachio_cake">قطعة دريم الفستق</strong><em>9,500 IQD</em></span>
+          <small data-t="c_pistachio_cake">كيك</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/spanish-latte.webp" alt="Spanish Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_spanish_latte">سبانش لاتيه</strong><em>8,000 IQD</em></span>
+          <small data-t="c_spanish_latte">مشروبات ساخنة</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/pom-mojito.webp" alt="Pomegranate Mojito" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_pom_mojito">موهيتو الرمان</strong><em>8,000 IQD</em></span>
+          <small data-t="c_pom_mojito">مبردات</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/bbq-pizza.webp" alt="BBQ Chicken Pizza" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_bbq_pizza">بيتزا دجاج الباربيكيو</strong><em>5,500 IQD</em></span>
+          <small data-t="c_bbq_pizza">بيتزا</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/cheesecake.webp" alt="Strawberry Cheesecake" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_cheesecake">تشيز كيك فراولة</strong><em>8,500 IQD</em></span>
+          <small data-t="c_cheesecake">كيك</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/frappe.webp" alt="Coffee Frappe" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_frappe">فرابيه القهوة</strong><em>8,000 IQD</em></span>
+          <small data-t="c_frappe">فرابيه</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/green-bowl.webp" alt="Green Goddess Bowl" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_green_bowl">وعاء جرين جوديس</strong><em>9,500 IQD</em></span>
+          <small data-t="c_green_bowl">سلطات</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/turkey-sandwich.webp" alt="Smoked Turkey & Blush Cheese" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_turkey_sandwich">ديك رومي مدخن وجبنة بلش</strong><em>9,500 IQD</em></span>
+          <small data-t="c_turkey_sandwich">ساندويتش</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/oreo-shake.webp" alt="Oreo Milkshake" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_oreo_shake">ميلك شيك أوريو</strong><em>8,000 IQD</em></span>
+          <small data-t="c_oreo_shake">ميلك شيك</small>
+        </a>
+        <a class="dish" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/iced-spanish.webp" alt="Iced Spanish Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_iced_spanish">آيس سبانش لاتيه</strong><em>8,000 IQD</em></span>
+          <small data-t="c_iced_spanish">آيس كوفي</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/matcha.webp" alt="Rose Pistachio Matcha" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_matcha">ماتشا الورد والفستق</strong><em>9,000 IQD</em></span>
+          <small data-t="c_matcha">ماتشا</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/saffron-latte.webp" alt="Saffron Cloud Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_saffron_latte">سفرون كلاود لاتيه</strong><em>8,500 IQD</em></span>
+          <small data-t="c_saffron_latte">مشروبات ساخنة</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/date-latte.webp" alt="Date Caramel Iced Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_date_latte">آيس لاتيه بالتمر والكراميل</strong><em>7,500 IQD</em></span>
+          <small data-t="c_date_latte">آيس كوفي</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/berry-tonic.webp" alt="Berry Tonic Espresso" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_berry_tonic">بيري تونيك إسبريسو</strong><em>8,000 IQD</em></span>
+          <small data-t="c_berry_tonic">آيس كوفي</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/roast-beef-salad.webp" alt="Roast Beef Salad" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_roast_beef_salad">سلطة روست بيف</strong><em>10,500 IQD</em></span>
+          <small data-t="c_roast_beef_salad">سلطات</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/pistachio-cake.webp" alt="Pistachio Dream Slice" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_pistachio_cake">قطعة دريم الفستق</strong><em>9,500 IQD</em></span>
+          <small data-t="c_pistachio_cake">كيك</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/spanish-latte.webp" alt="Spanish Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_spanish_latte">سبانش لاتيه</strong><em>8,000 IQD</em></span>
+          <small data-t="c_spanish_latte">مشروبات ساخنة</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/pom-mojito.webp" alt="Pomegranate Mojito" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_pom_mojito">موهيتو الرمان</strong><em>8,000 IQD</em></span>
+          <small data-t="c_pom_mojito">مبردات</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/bbq-pizza.webp" alt="BBQ Chicken Pizza" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_bbq_pizza">بيتزا دجاج الباربيكيو</strong><em>5,500 IQD</em></span>
+          <small data-t="c_bbq_pizza">بيتزا</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/cheesecake.webp" alt="Strawberry Cheesecake" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_cheesecake">تشيز كيك فراولة</strong><em>8,500 IQD</em></span>
+          <small data-t="c_cheesecake">كيك</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/frappe.webp" alt="Coffee Frappe" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_frappe">فرابيه القهوة</strong><em>8,000 IQD</em></span>
+          <small data-t="c_frappe">فرابيه</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/green-bowl.webp" alt="Green Goddess Bowl" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_green_bowl">وعاء جرين جوديس</strong><em>9,500 IQD</em></span>
+          <small data-t="c_green_bowl">سلطات</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/turkey-sandwich.webp" alt="Smoked Turkey & Blush Cheese" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_turkey_sandwich">ديك رومي مدخن وجبنة بلش</strong><em>9,500 IQD</em></span>
+          <small data-t="c_turkey_sandwich">ساندويتش</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/oreo-shake.webp" alt="Oreo Milkshake" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_oreo_shake">ميلك شيك أوريو</strong><em>8,000 IQD</em></span>
+          <small data-t="c_oreo_shake">ميلك شيك</small>
+        </a>
+        <a class="dish" aria-hidden="true" tabindex="-1" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span class="pic"><img src="assets/menu/iced-spanish.webp" alt="Iced Spanish Latte" width="640" height="640"></span>
+          <span class="meta"><strong data-t="d_iced_spanish">آيس سبانش لاتيه</strong><em>8,000 IQD</em></span>
+          <small data-t="c_iced_spanish">آيس كوفي</small>
+        </a>
+      </div></div>
+    </div>
+  </section>
+
+  <section class="mission">
+    <div class="wrap">
+      <span class="label" data-t="l_mission">رسالتنا</span>
+      <p data-t="mission">مكان يجتمع فيه التركيز العميق، والقهوة الممتازة، والتأمل الهادئ.</p>
+      <hr class="rule">
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="wrap">
+      <div class="pillar"><img class="pi" src="assets/icon-pen.png" alt=""><h3 data-t="p1">تركيز</h3><p data-t="p1b">مساحة للعمل والدراسة، بعيداً عن الضجيج.</p></div>
+      <div class="pillar"><img class="pi" src="assets/icon-cup.png" alt=""><h3 data-t="p2">قهوة</h3><p data-t="p2b">حبوب مختارة وتحضير متقن.</p></div>
+      <div class="pillar"><img class="pi" src="assets/icon-book.png" alt=""><h3 data-t="p3">هدوء</h3><p data-t="p3b">أجواء هادئة للقراءة والتفكير.</p></div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <div class="wrap">
+      <div class="head">
+        <div><span class="label" data-t="l_space">المكان</span><h2 data-t="g_t">صُمّم ليكون مساحتك الخاصة</h2></div>
+        <p data-t="g_b">خشب دافئ، مخمل عنابي، وإضاءة هادئة. كل زاوية فيها مكان لفكرة.</p>
+      </div>
+      <div class="shots">
+        <figure class="wide rv ph" data-full="assets/exterior.webp"><img src="assets/exterior.webp" alt="Fikr Cafe exterior" width="1400" height="934"><figcaption data-t="c1">الواجهة</figcaption></figure>
+        <figure class="rv ph" data-full="assets/nook.webp" style="--d:.12s"><img src="assets/nook.webp" alt="" width="1200" height="800"><figcaption data-t="c2">ركن القراءة</figcaption></figure>
+        <figure class="rv ph" data-full="assets/wall.webp" style="--d:.24s"><img src="assets/wall.webp" alt="" width="1200" height="675"><figcaption data-t="c3">Home for your thoughts</figcaption></figure>
+        <figure class="wide rv ph" data-full="assets/terrace.webp" style="--d:.36s"><img src="assets/terrace.webp" alt="" width="1400" height="934"><figcaption data-t="c4">التراس</figcaption></figure>
+      </div>
+      <div class="strip" aria-label="Photos">
+        <div class="row" style="--sp:75s"><button type="button" class="ph" data-full="assets/strip/sign-ar.webp"><img src="assets/strip/sign-ar.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/nook.webp"><img src="assets/strip/nook.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/hands.webp"><img src="assets/strip/hands.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/home.webp"><img src="assets/strip/home.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/print.webp"><img src="assets/strip/print.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/sign-ar.webp"><img src="assets/strip/sign-ar.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/nook.webp"><img src="assets/strip/nook.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/hands.webp"><img src="assets/strip/hands.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/home.webp"><img src="assets/strip/home.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/print.webp"><img src="assets/strip/print.webp" alt="" width="640" height="960" draggable="false"></button></div>
+        <div class="row rev" style="--sp:85s"><button type="button" class="ph" data-full="assets/strip/column.webp"><img src="assets/strip/column.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/shelves.webp"><img src="assets/strip/shelves.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/logo-sign.webp"><img src="assets/strip/logo-sign.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/home2.webp"><img src="assets/strip/home2.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/nook2.webp"><img src="assets/strip/nook2.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/column.webp"><img src="assets/strip/column.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/shelves.webp"><img src="assets/strip/shelves.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/logo-sign.webp"><img src="assets/strip/logo-sign.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/home2.webp"><img src="assets/strip/home2.webp" alt="" width="640" height="960" draggable="false"></button><button type="button" class="ph" data-full="assets/strip/nook2.webp"><img src="assets/strip/nook2.webp" alt="" width="640" height="960" draggable="false"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu">
+    <div class="img"><img src="assets/cup.webp" alt="" width="1000" height="1000"></div>
+    <div class="wrap">
+      <div>
+        <span class="label" data-t="l_menu">المنيو</span>
+        <h2 data-t="menu_t">المنيو كاملاً</h2>
+        <p data-t="menu_b">واطلب مباشرة من طاولتك عبر رمز QR.</p>
+      </div>
+      <a class="btn solid" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener" data-t="menu_btn">افتح المنيو</a>
+    </div>
+  </section>
+
+  <section class="visit">
+    <div class="wrap">
+      <div>
+        <span class="label" data-t="l_visit">زورونا</span>
+        <h2 data-t="city">أربيل</h2>
+        
+      </div>
+      <div class="list">
+        <a class="row" href="https://www.google.com/maps/place/Fikr+Cafe/data=!4m2!3m1!1s0x0:0x516d12f6e4f9b03c" target="_blank" rel="noopener">
+          <span><span data-t="r_map">الموقع وأوقات الدوام</span><small>Google Maps</small></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="row" href="https://www.instagram.com/fikr.cafe/" target="_blank" rel="noopener">
+          <span><span data-t="r_ig">إنستغرام</span><small>@fikr.cafe</small></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <a class="row" href="https://menu.mynu.to/q/fikr-cafe/467" target="_blank" rel="noopener">
+          <span><span data-t="r_menu">المنيو</span><small>menu.mynu.to</small></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="cs" role="dialog" aria-modal="true" aria-label="Contact">
+  <div class="card">
+    <div class="num"></div>
+    <a class="opt wa" href="#" target="_blank" rel="noopener"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2 .6 2.7.5a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.4-.3z"/></svg></span><span><strong data-t="cs_wa">واتساب</strong><small data-t="cs_wab">أرسل رسالة الآن</small></span><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></a>
+    <a class="opt ph" href="#"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.9 2z"/></svg></span><span><strong data-t="cs_call">اتصال</strong><small data-t="cs_callb">مكالمة هاتفية عادية</small></span><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></a>
+    <button type="button" class="opt cp"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span><span><strong data-t="cs_copy">نسخ الرقم</strong><small data-t="cs_copyb" class="cpb">انسخ إلى الحافظة</small></span><span></span></button>
+    <button type="button" class="close" data-t="cs_close">إغلاق</button>
+  </div>
+</div>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Photo">
+  <img src="" alt="">
+  <button type="button" class="x" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  <button type="button" class="p" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button type="button" class="n" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
+  <span class="c"></span>
+</div>
+<footer>
+  <div class="wrap">
+    <img src="assets/logo-en-yellow.png" alt="">
+    <span>© 2026 · fikrcafe.com</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var T={
+    ar:{hero:"بيتٌ <span>لأفكارك</span>",b_menu:"المنيو",b_map:"الموقع",
+      l_mission:"رسالتنا",mission:"مكان يجتمع فيه التركيز العميق، والقهوة الممتازة، والتأمل الهادئ.",
+      p1:"تركيز",p1b:"مساحة للعمل والدراسة، بعيداً عن الضجيج.",p2:"قهوة",p2b:"حبوب مختارة وتحضير متقن.",p3:"هدوء",p3b:"أجواء هادئة للقراءة والتفكير.",
+      l_space:"المكان",g_t:"صُمّم ليكون مساحتك الخاصة",g_b:"خشب دافئ، مخمل عنابي، وإضاءة هادئة. كل زاوية فيها مكان لفكرة.",c1:"الواجهة",c2:"ركن القراءة",c3:"Home for your thoughts",c4:"التراس",
+      l_menu:"المنيو",menu_t:"المنيو كاملاً",menu_b:"واطلب مباشرة من طاولتك عبر رمز QR.",menu_btn:"افتح المنيو",
+      l_dishes:"من المنيو",dishes_t:"أطباق ومشروبات مختارة",d_matcha:"ماتشا الورد والفستق",c_matcha:"ماتشا",d_saffron_latte:"سفرون كلاود لاتيه",c_saffron_latte:"مشروبات ساخنة",d_date_latte:"آيس لاتيه بالتمر والكراميل",c_date_latte:"آيس كوفي",d_berry_tonic:"بيري تونيك إسبريسو",c_berry_tonic:"آيس كوفي",d_roast_beef_salad:"سلطة روست بيف",c_roast_beef_salad:"سلطات",d_pistachio_cake:"قطعة دريم الفستق",c_pistachio_cake:"كيك",d_spanish_latte:"سبانش لاتيه",c_spanish_latte:"مشروبات ساخنة",d_pom_mojito:"موهيتو الرمان",c_pom_mojito:"مبردات",d_bbq_pizza:"بيتزا دجاج الباربيكيو",c_bbq_pizza:"بيتزا",d_cheesecake:"تشيز كيك فراولة",c_cheesecake:"كيك",d_frappe:"فرابيه القهوة",c_frappe:"فرابيه",d_green_bowl:"وعاء جرين جوديس",c_green_bowl:"سلطات",d_turkey_sandwich:"ديك رومي مدخن وجبنة بلش",c_turkey_sandwich:"ساندويتش",d_oreo_shake:"ميلك شيك أوريو",c_oreo_shake:"ميلك شيك",d_iced_spanish:"آيس سبانش لاتيه",c_iced_spanish:"آيس كوفي",l_prod:"التفاصيل",prod_t:"فكر في كل التفاصيل",prod_b:"من الكوب إلى الكيس، كل قطعة تحمل الحبة.",pr1:"الكوب",pr2:"حبوب القهوة",pr3:"حاملة الأكواب",pr4:"علبة الهدايا",pr5:"الكيس",pr6:"مريلة الباريستا",ph:"للتواصل",cs_wa:"واتساب",cs_wab:"أرسل رسالة الآن",cs_call:"اتصال",cs_callb:"مكالمة هاتفية عادية",cs_copy:"نسخ الرقم",cs_copyb:"انسخ إلى الحافظة",cs_copied:"تم النسخ",cs_close:"إغلاق",l_visit:"زورونا",city:"أربيل",r_map:"الموقع وأوقات الدوام",r_ig:"إنستغرام",r_menu:"المنيو"},
+    ckb:{hero:"ماڵێک بۆ <span>بیرۆکەکانت</span>",b_menu:"مینیو",b_map:"شوێن",
+      l_mission:"پەیامەکەمان",mission:"شوێنێک کە سەرنجی قووڵ، قاوەی نایاب و بیرکردنەوەی ئارام تێیدا یەکدەگرن.",
+      p1:"سەرنج",p1b:"شوێنێک بۆ کار و خوێندن، دوور لە ژاوەژاو.",p2:"قاوە",p2b:"دەنکی هەڵبژێردراو و ئامادەکردنی ورد.",p3:"ئارامی",p3b:"کەشێکی ئارام بۆ خوێندنەوە و بیرکردنەوە.",
+      l_space:"شوێنەکە",g_t:"دروستکراوە بۆ ئەوەی شوێنی تایبەتی خۆت بێت",g_b:"دارێکی گەرم، مەخمەری سوور و ڕووناکییەکی ئارام. هەموو گۆشەیەک شوێنی بیرۆکەیەکی تێدایە.",c1:"ڕووی دەرەوە",c2:"گۆشەی خوێندنەوە",c3:"Home for your thoughts",c4:"تەراس",
+      l_menu:"مینیو",menu_t:"تەواوی مینیو لەگەڵ نرخەکان",menu_b:"و ڕاستەوخۆ لە مێزەکەتەوە بە کۆدی QR داوا بکە.",menu_btn:"مینیو بکەرەوە",
+      l_dishes:"لە مینیوەوە",dishes_t:"خواردن و خواردنەوەی هەڵبژێردراو",d_matcha:"ماچای ڕۆز و فستق",c_matcha:"ماتچا",d_saffron_latte:"سەفرۆن کڵاود لاتیێ",c_saffron_latte:"خواردنەوەی گەرم",d_date_latte:"ئایس لاتیێی خورما و کەرامێڵ",c_date_latte:"قاوەی سارد",d_berry_tonic:"بێری تۆنیک ئێسپریسۆ",c_berry_tonic:"قاوەی سارد",d_roast_beef_salad:"زەڵاتەی ڕۆست بیف",c_roast_beef_salad:"زەڵاتە",d_pistachio_cake:"پارچە کێکی دریم فستق",c_pistachio_cake:"کێک",d_spanish_latte:"سپانیش لاتیێ",c_spanish_latte:"خواردنەوەی گەرم",d_pom_mojito:"مۆهیتۆی هەنار",c_pom_mojito:"فێنککەرەوە",d_bbq_pizza:"پیتزای مریشکی باربیکیو",c_bbq_pizza:"پیتزا",d_cheesecake:"چیزکێکی فڕاولە",c_cheesecake:"کێک",d_frappe:"قاوە فرابی",c_frappe:"فرابی",d_green_bowl:"قاپی گرین گۆدێس",c_green_bowl:"زەڵاتە",d_turkey_sandwich:"تورکی دووکەڵکراو و پەنیری بڵەش",c_turkey_sandwich:"ساندەویچ",d_oreo_shake:"میڵک شەیکی ئۆریۆ",c_oreo_shake:"میلکشەیک",d_iced_spanish:"ئایس سپانیش لاتیێ",c_iced_spanish:"قاوەی سارد",l_prod:"وردەکارییەکان",prod_t:"فکر لە هەموو وردەکارییەکدا",prod_b:"لە کوپەوە تا کیسە، هەموو پارچەیەک دەنکەکە هەڵدەگرێت.",pr1:"کوپ",pr2:"دەنکی قاوە",pr3:"هەڵگری کوپ",pr4:"سندوقی دیاری",pr5:"کیسە",pr6:"بەرۆکی باریستا",ph:"پەیوەندی",cs_wa:"واتسئاپ",cs_wab:"ئێستا نامە بنێرە",cs_call:"پەیوەندی",cs_callb:"پەیوەندی تەلەفۆنی ئاسایی",cs_copy:"کۆپی ژمارە",cs_copyb:"کۆپی بکە",cs_copied:"کۆپی کرا",cs_close:"داخستن",l_visit:"سەردانمان بکەن",city:"هەولێر",r_map:"شوێن و کاتی کارکردن",r_ig:"ئینستاگرام",r_menu:"مینیو"},
+    en:{hero:"Home for your <span>thoughts</span>",b_menu:"Menu",b_map:"Location",
+      l_mission:"Our mission",mission:"A place where deep focus, exceptional coffee and quiet thought meet.",
+      p1:"Focus",p1b:"Room to work and study, away from the noise.",p2:"Coffee",p2b:"Selected beans, carefully prepared.",p3:"Calm",p3b:"A quiet setting for reading and thought.",
+      l_space:"The space",g_t:"Designed to be your personal space",g_b:"Warm wood, burgundy velvet and soft light. Every corner has room for an idea.",c1:"The front",c2:"The reading nook",c3:"Home for your thoughts",c4:"The terrace",
+      l_menu:"Menu",menu_t:"The full menu, with prices",menu_b:"Order straight from your table with the QR code.",menu_btn:"Open the menu",
+      l_dishes:"From the menu",dishes_t:"Selected dishes and drinks",d_matcha:"Rose Pistachio Matcha",c_matcha:"Matcha",d_saffron_latte:"Saffron Cloud Latte",c_saffron_latte:"Hot drinks",d_date_latte:"Date Caramel Iced Latte",c_date_latte:"Iced coffee",d_berry_tonic:"Berry Tonic Espresso",c_berry_tonic:"Iced coffee",d_roast_beef_salad:"Roast Beef Salad",c_roast_beef_salad:"Salads",d_pistachio_cake:"Pistachio Dream Slice",c_pistachio_cake:"Cakes",d_spanish_latte:"Spanish Latte",c_spanish_latte:"Hot drinks",d_pom_mojito:"Pomegranate Mojito",c_pom_mojito:"Coolers",d_bbq_pizza:"BBQ Chicken Pizza",c_bbq_pizza:"Pizza",d_cheesecake:"Strawberry Cheesecake",c_cheesecake:"Cakes",d_frappe:"Coffee Frappe",c_frappe:"Frappe",d_green_bowl:"Green Goddess Bowl",c_green_bowl:"Salads",d_turkey_sandwich:"Smoked Turkey & Blush Cheese",c_turkey_sandwich:"Sandwiches",d_oreo_shake:"Oreo Milkshake",c_oreo_shake:"Milkshakes",d_iced_spanish:"Iced Spanish Latte",c_iced_spanish:"Iced coffee",l_prod:"The details",prod_t:"FIKR in every detail",prod_b:"From the cup to the bag, every piece carries the bean.",pr1:"The cup",pr2:"Coffee beans",pr3:"Cup carrier",pr4:"Gift box",pr5:"The bag",pr6:"Barista apron",ph:"Call us",cs_wa:"WhatsApp",cs_wab:"Send a message now",cs_call:"Call",cs_callb:"Regular phone call",cs_copy:"Copy number",cs_copyb:"Copy to clipboard",cs_copied:"Copied",cs_close:"Close",l_visit:"Visit",city:"Erbil",r_map:"Location & hours",r_ig:"Instagram",r_menu:"Menu"}
+  };
+  var root=document.documentElement;
+  function apply(l){
+    if(!T[l]) l="ar"; var d=T[l];
+    root.lang=l; root.dir=(l==="en")?"ltr":"rtl";
+    document.querySelectorAll("[data-t]").forEach(function(el){var k=el.getAttribute("data-t");if(d[k]!=null)el.textContent=d[k];});
+    document.querySelectorAll("[data-h]").forEach(function(el){var k=el.getAttribute("data-h");if(d[k]!=null)el.innerHTML=d[k];});
+    document.querySelectorAll(".swap").forEach(function(el){el.src=el.getAttribute(l==="en"?"data-en":"data-ar");});
+    document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed",String(b.getAttribute("data-l")===l));});
+    try{localStorage.setItem("fikr-lang",l);}catch(e){}
+  }
+  document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){apply(b.getAttribute("data-l"));});});
+  var start="ar",h=(location.hash||"").slice(1);
+  if(h==="en"||h==="ar"||h==="ckb") start=h; else {try{var s=localStorage.getItem("fikr-lang");if(s&&T[s])start=s;}catch(e){}}
+  apply(start);
+})();
+
+
+
+(function(){var r=document.getElementById("rail");if(!r)return;r.style.setProperty("--speed",Math.round(r.scrollWidth/2/40)+"s");document.querySelectorAll(".rail-nav button").forEach(function(b){b.addEventListener("click",function(){var d=parseInt(b.getAttribute("data-dir"))*(document.documentElement.dir==="rtl"?-1:1);r.scrollBy({left:d*r.clientWidth*.8,behavior:"smooth"});});});})();
+
+
+(function(){
+  var lb=document.getElementById("lb"),im=lb.querySelector("img"),cnt=lb.querySelector(".c");
+  var items=Array.prototype.slice.call(document.querySelectorAll(".ph")).filter(function(e){return !e.closest(".row") || !e.closest(".row").querySelector(".ph")||true});
+  // de-duplicate the marquee's cloned row
+  var seen={},list=[];items.forEach(function(e){var f=e.getAttribute("data-full");if(!seen[f]){seen[f]=list.length;list.push(f)}});
+  var cur=0,coarse=window.matchMedia("(pointer:coarse)").matches;
+  function show(i){cur=(i+list.length)%list.length;im.src=list[cur];cnt.textContent=(cur+1)+" / "+list.length;lb.classList.add("open");document.body.style.overflow="hidden"}
+  function hide(){lb.classList.remove("open");document.body.style.overflow=""}
+  lb.querySelector(".x").addEventListener("click",hide);
+  lb.querySelector(".n").addEventListener("click",function(e){e.stopPropagation();show(cur+1)});
+  lb.querySelector(".p").addEventListener("click",function(e){e.stopPropagation();show(cur-1)});
+  lb.addEventListener("click",function(e){if(e.target===lb||e.target===im)hide()});
+  document.addEventListener("keydown",function(e){if(!lb.classList.contains("open"))return;if(e.key==="Escape")hide();if(e.key==="ArrowRight")show(cur+1);if(e.key==="ArrowLeft")show(cur-1)});
+  var sx=0;lb.addEventListener("touchstart",function(e){sx=e.touches[0].clientX},{passive:true});
+  lb.addEventListener("touchend",function(e){var dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)show(dx<0?cur+1:cur-1)});
+  items.forEach(function(el){
+    var f=el.getAttribute("data-full"),t=null,moved=false;
+    el.addEventListener("contextmenu",function(e){e.preventDefault()});
+    if(coarse){
+      el.addEventListener("touchstart",function(e){moved=false;t=setTimeout(function(){if(!moved){if(navigator.vibrate)navigator.vibrate(15);show(seen[f])}},420)},{passive:true});
+      el.addEventListener("touchmove",function(){moved=true;clearTimeout(t)},{passive:true});
+      el.addEventListener("touchend",function(){clearTimeout(t)});
+      el.addEventListener("touchcancel",function(){clearTimeout(t)});
+    } else {
+      el.addEventListener("click",function(){show(seen[f])});
+    }
+  });
+})();
+
+(function(){var img=document.getElementById("heroimg"),an=document.getElementById("anchor"),hero=document.querySelector(".hero");if(!img||!an)return;
+var IW=1537,IH=1023,PX=.562,PY=.445,PW=.10;
+var wrap=hero.querySelector(".wrap"),names=wrap.querySelector(".names");
+function place(){var m=window.matchMedia("(max-width:760px)").matches;if(m){if(an.parentNode!==wrap)wrap.insertBefore(an,names);an.style.left="";an.style.top="";an.style.width="";return}else if(an.parentNode===wrap){hero.insertBefore(an,wrap)}
+var W=hero.clientWidth,H=hero.clientHeight,sc=Math.max(W/IW,H/IH),rw=IW*sc,rh=IH*sc;
+var ox=(W-rw)*.53,oy=(H-rh)*.45;
+an.style.left=(ox+rw*PX)+"px";an.style.top=(oy+rh*PY)+"px";an.style.width=(rw*PW)+"px";}
+place();window.addEventListener("resize",place);})();
+
+(function(){var cs=document.getElementById("cs");if(!cs)return;var num=cs.querySelector(".num"),wa=cs.querySelector(".wa"),ph=cs.querySelector(".ph"),cp=cs.querySelector(".cp"),cur="";
+function t(k){var l=document.documentElement.lang,d={ar:{cs_copied:"تم النسخ",cs_copyb:"انسخ إلى الحافظة"},ckb:{cs_copied:"کۆپی کرا",cs_copyb:"کۆپی بکە"},en:{cs_copied:"Copied",cs_copyb:"Copy to clipboard"}};return (d[l]||d.ar)[k]}
+function open(n,label){cur=n;num.textContent=label;wa.href="https://wa.me/"+n;ph.href="tel:+"+n;cs.classList.add("open")}
+function close(){cs.classList.remove("open")}
+document.querySelectorAll(".contact .tel").forEach(function(b){b.addEventListener("click",function(){open(b.getAttribute("data-num"),b.textContent.trim())})});
+cs.addEventListener("click",function(e){if(e.target===cs)close()});
+cs.querySelector(".close").addEventListener("click",close);
+document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});
+cp.addEventListener("click",function(){var txt="+"+cur,small=cp.querySelector(".cpb");function ok(){small.textContent=t("cs_copied");setTimeout(function(){small.textContent=t("cs_copyb")},1600)}
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(ok,function(){fallback()})}else fallback();
+ function fallback(){var ta=document.createElement("textarea");ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");ok()}catch(e){}document.body.removeChild(ta)}});
+})();
+</script>
+
+</body>
+</html>
