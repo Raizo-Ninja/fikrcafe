@@ -269,8 +269,8 @@ html[dir="rtl"] .rail-nav svg{transform:scaleX(-1)}
 @media (pointer:coarse){.rail-nav{display:none}}
 
 /* hero contact */
-.contact{display:flex;align-items:center;gap:16px;margin-top:18px;font-family:var(--latin);font-weight:300;font-size:13px;letter-spacing:.14em;color:var(--muted);direction:ltr;font-variant-numeric:tabular-nums}
-.contact .tel{all:unset;cursor:pointer;color:var(--muted);transition:color .2s;font:inherit;letter-spacing:inherit}
+.contact{display:flex;align-items:center;gap:22px;margin-top:22px;font-family:var(--latin-head);font-weight:900;font-size:clamp(20px,2.2vw,28px);letter-spacing:.08em;color:var(--text);direction:ltr;font-variant-numeric:tabular-nums;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.contact .tel{all:unset;cursor:pointer;color:var(--text);transition:color .2s;font:inherit;letter-spacing:inherit}
 .contact .tel:hover{color:var(--gold)}
 .contact .tel:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
 /* call sheet */
@@ -295,8 +295,8 @@ html[dir="rtl"] .rail-nav svg{transform:scaleX(-1)}
 html[dir="rtl"] #cs .opt .go{transform:scaleX(-1)}
 #cs .close{all:unset;cursor:pointer;display:block;width:100%;text-align:center;margin-top:14px;padding:10px;color:var(--muted);font-size:14px}
 #cs .close:hover{color:var(--gold)}
-.contact i{width:3px;height:3px;border-radius:50%;background:var(--gold);display:inline-block;opacity:.8}
-@media (max-width:400px){.contact{flex-direction:column;gap:6px}.contact i{display:none}}
+.contact i{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block}
+@media (max-width:480px){.contact{flex-direction:column;gap:8px;font-size:22px}.contact i{display:none}}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:32px;border-top:1px solid var(--hair-soft);color:var(--muted);font-size:13px}
 footer img{height:30px;width:auto;opacity:.85}
 footer .word{color:var(--muted)}
