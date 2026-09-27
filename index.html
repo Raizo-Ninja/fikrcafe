@@ -135,18 +135,18 @@ html[lang="ckb"] .pillar h3{font-weight:700}
 html[lang="en"] .gallery h2{font-weight:900}
 .gallery .head p{color:var(--muted);max-width:22em}
 .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.shots figure{margin:0;position:relative;overflow:hidden;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.4);cursor:zoom-in}
+.shots figure{margin:0;position:relative;overflow:hidden;border-radius:18px;box-shadow:0 18px 40px rgba(0,0,0,.4);cursor:zoom-in;aspect-ratio:4/3}
 .shots figure:hover img{transform:scale(1.08)}
-.shots figure.wide{grid-column:span 2}
-.shots img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-.shots figure.wide img{aspect-ratio:8/3}
+.shots figure.wide{grid-column:span 2;aspect-ratio:8/3}
+.shots img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+
 .shots figure:hover img{transform:scale(1.035)}
 .shots figcaption{position:absolute;inset-inline-start:16px;bottom:14px;display:flex;gap:10px;align-items:center;color:var(--text);font-size:13px;background:rgba(17,6,16,.55);backdrop-filter:blur(6px);padding:6px 12px;border-radius:999px}
 .shots figcaption::before{content:"";width:14px;height:1px;background:var(--gold)}
 @media (max-width:760px){
   .shots{grid-template-columns:1fr 1fr}
-  .shots figure.wide{grid-column:span 2}
-  .shots figure.wide img{aspect-ratio:16/9}
+  .shots figure.wide{grid-column:span 2;aspect-ratio:8/3}
+  .shots figure.wide{aspect-ratio:16/9}
 }
 
 /* film strip */
